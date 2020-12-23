@@ -1,0 +1,14 @@
+D:\C#\FirstApp\FirstApp\bin\Debug\netcoreapp2.1\FirstApp.deps.json
+D:\C#\FirstApp\FirstApp\bin\Debug\netcoreapp2.1\FirstApp.runtimeconfig.json
+D:\C#\FirstApp\FirstApp\bin\Debug\netcoreapp2.1\FirstApp.runtimeconfig.dev.json
+D:\C#\FirstApp\FirstApp\bin\Debug\netcoreapp2.1\FirstApp.dll
+D:\C#\FirstApp\FirstApp\bin\Debug\netcoreapp2.1\FirstApp.pdb
+D:\C#\FirstApp\FirstApp\bin\Debug\netcoreapp2.1\ClassLibrary1.dll
+D:\C#\FirstApp\FirstApp\bin\Debug\netcoreapp2.1\ClassLibrary1.pdb
+D:\C#\FirstApp\FirstApp\obj\Debug\netcoreapp2.1\FirstApp.csprojAssemblyReference.cache
+D:\C#\FirstApp\FirstApp\obj\Debug\netcoreapp2.1\FirstApp.csproj.CoreCompileInputs.cache
+D:\C#\FirstApp\FirstApp\obj\Debug\netcoreapp2.1\FirstApp.AssemblyInfoInputs.cache
+D:\C#\FirstApp\FirstApp\obj\Debug\netcoreapp2.1\FirstApp.AssemblyInfo.cs
+D:\C#\FirstApp\FirstApp\obj\Debug\netcoreapp2.1\FirstApp.csproj.CopyComplete
+D:\C#\FirstApp\FirstApp\obj\Debug\netcoreapp2.1\FirstApp.dll
+D:\C#\FirstApp\FirstApp\obj\Debug\netcoreapp2.1\FirstApp.pdb
