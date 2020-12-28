@@ -39,3 +39,15 @@ namespace EventDelegateExample
     }
   }
 }
+
+namespace MethodExtensionExample
+{
+  using EventDelegateExample;
+  public static class ExtendEventDelegateClass
+  {
+    public static string AddHello( this EventClass eventClass )
+    {
+      return eventClass.ClassName + " Hello!!!";
+    }
+  }
+}

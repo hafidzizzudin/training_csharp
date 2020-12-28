@@ -1,5 +1,6 @@
 ﻿using EventDelegateExample;
 using FirstLibrary.Testing;
+using MethodExtensionExample;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic; // List
@@ -99,6 +100,9 @@ namespace FirstApp
         //23. LINQ
         //ExLINQ();
         //Console.ReadKey();
+
+        //24. Method Extension Class
+        ExMethodExtensionClass();
       }
       catch( Exception e )
       {
@@ -108,6 +112,11 @@ namespace FirstApp
       watch.Stop();
 
       Console.WriteLine( $"\nTotal execution time: {watch.ElapsedMilliseconds}ms" );
+    }
+
+    private static void ExMethodExtensionClass()
+    {
+      Console.WriteLine( new EventClass().AddHello() );
     }
 
     private static async void ExLINQ()
