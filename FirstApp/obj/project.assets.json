@@ -751,11 +751,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\C#\\FirstApp\\FirstApp\\FirstApp.csproj",
+      "projectUniqueName": "D:\\C#\\private\\FirstApp\\FirstApp\\FirstApp.csproj",
       "projectName": "FirstApp",
-      "projectPath": "D:\\C#\\FirstApp\\FirstApp\\FirstApp.csproj",
+      "projectPath": "D:\\C#\\private\\FirstApp\\FirstApp\\FirstApp.csproj",
       "packagesPath": "C:\\Users\\Formulatrix\\.nuget\\packages\\",
-      "outputPath": "D:\\C#\\FirstApp\\FirstApp\\obj\\",
+      "outputPath": "D:\\C#\\private\\FirstApp\\FirstApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -774,8 +774,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "D:\\C#\\FirstApp\\ClassLibrary1\\ClassLibrary1.csproj": {
-              "projectPath": "D:\\C#\\FirstApp\\ClassLibrary1\\ClassLibrary1.csproj"
+            "D:\\C#\\private\\FirstApp\\ClassLibrary1\\ClassLibrary1.csproj": {
+              "projectPath": "D:\\C#\\private\\FirstApp\\ClassLibrary1\\ClassLibrary1.csproj"
             }
           }
         }

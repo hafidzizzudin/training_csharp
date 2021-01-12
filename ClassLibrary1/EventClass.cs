@@ -19,11 +19,13 @@ namespace EventDelegateExample
     // 2. create event
     // 3. raise event
     //public delegate void BaseEvenDelegate( object source, EventArgs eventArgs ); // default
-    //public delegate void BaseEventDelegate( object source, CustomEventArgs eventArgs ); // custom eventArgs version 1
+    public delegate void BaseEventDelegate( object source, CustomEventArgs eventArgs ); // custom eventArgs version 1
+    public event BaseEventDelegate SpacePressed;
+    public event EventHandler<bool> TestEventHandler;
 
-    public event EventHandler<CustomEventArgs> SpacePressed; // custom eventArgs version 2
+    //public event EventHandler<CustomEventArgs> SpacePressed; // custom eventArgs version 2
 
-    public string ClassName { get { return "Event Class"; } }
+    public string ClassName { get; set; } = "Default value class name";
 
     public void KeyboardInputHandler( string msg )
     {
@@ -36,6 +38,7 @@ namespace EventDelegateExample
     protected virtual void OnSpacePressed( string msg )
     {
       SpacePressed?.Invoke( this, new CustomEventArgs() { Title = msg } );
+      TestEventHandler(this, true);
     }
   }
 }

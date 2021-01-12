@@ -4,6 +4,7 @@ using MethodExtensionExample;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic; // List
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
@@ -87,7 +88,8 @@ namespace FirstApp
 
         //20. http request
         //DelegateTask task = ExHttpRequest;
-        //task();
+        //task(); //version 1
+        //task.Invoke(); //version 2
         //Console.ReadKey();
 
         //DelegateVoid t = WriteY;
@@ -95,14 +97,20 @@ namespace FirstApp
         //t();
 
         //22. Event and Delegate
-        //ExEventDelegate();
+        ExEventDelegate();
 
         //23. LINQ
         //ExLINQ();
         //Console.ReadKey();
 
         //24. Method Extension Class
-        ExMethodExtensionClass();
+        //ExMethodExtensionClass();
+
+        //25. Nameof syntax
+        //ExNameOf();
+
+        //26. Parsing Double
+        //ExDoubleParsing();
       }
       catch( Exception e )
       {
@@ -114,14 +122,22 @@ namespace FirstApp
       Console.WriteLine( $"\nTotal execution time: {watch.ElapsedMilliseconds}ms" );
     }
 
+    private static void ExNameOf()
+    {
+      //throw new NotImplementedException();
+      Console.WriteLine( $"{nameof( ExNameOf )} is called" );
+    }
+
     private static void ExMethodExtensionClass()
     {
+      Console.WriteLine( "===EXAMPLE CLASS EXTENSION===" );
       Console.WriteLine( new EventClass().AddHello() );
+      Console.WriteLine();
     }
 
     private static async void ExLINQ()
     {
-
+      Console.WriteLine( "===EXAMPLE LINQ===" );
       try
       {
         client.DefaultRequestHeaders.Add( "app-id", "5fe1440be2a1ce246c33047d" );
@@ -150,15 +166,24 @@ namespace FirstApp
       {
         Console.WriteLine( "Error: {0}", e.Message );
       }
+      Console.WriteLine();
     }
 
     private static void ExEventDelegate()
     {
-      EventClass eventClass = new EventClass();
+      Console.WriteLine( "===EXAMPLE EVENT DELEGATE===" );
+      EventClass eventClass = new EventClass() { ClassName = "Beer Party" };
+
       eventClass.SpacePressed += Subscriber1;
       eventClass.SpacePressed += Subscriber2;
-
+      eventClass.TestEventHandler += BoolSubscriber;
       eventClass.KeyboardInputHandler( "New message incoming" );
+      Console.WriteLine();
+    }
+
+    private static void BoolSubscriber( object source, bool info )
+    {
+      Console.WriteLine( "Bool subsriber: bool info: {0}", info );
     }
 
     private static void Subscriber1( object source, CustomEventArgs e )
@@ -426,6 +451,27 @@ namespace FirstApp
       Console.WriteLine( b.Number );
       b = null;
       Console.WriteLine( b?.Number.ToString() ?? "car is null" );
+    }
+
+    static private void ExDoubleParsing()
+    {
+      string[] values = { "1,643.57", "$1,643.57", "-1.643e6",
+                          "-168934617882109132", "123AE6",
+                          null, string.Empty, "ABCDEF" };
+
+      NumberFormatInfo provider = new NumberFormatInfo
+      {
+        NumberDecimalSeparator = ".",
+        NumberGroupSeparator = ","
+      };
+
+      foreach( var value in values )
+      {
+        if( double.TryParse( value, NumberStyles.Any, provider, out double number ) )
+          Console.WriteLine( "'{0}' --> {1}", value, number );
+        else
+          Console.WriteLine( "Unable to parse '{0}' --> {1}", value, number );
+      }
     }
 
     private string GetName( string name )
