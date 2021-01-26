@@ -5,8 +5,10 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic; // List
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -97,7 +99,7 @@ namespace FirstApp
         //t();
 
         //22. Event and Delegate
-        ExEventDelegate();
+        //ExEventDelegate();
 
         //23. LINQ
         //ExLINQ();
@@ -111,6 +113,22 @@ namespace FirstApp
 
         //26. Parsing Double
         //ExDoubleParsing();
+
+        //27. File and Directory Path
+        //ExFileDirectoryPath();
+
+        //28. Get Class from String
+        //ExGetClassFromString();
+
+        // 29. Enum 
+        //ExTestEnumFunc();
+
+        // 30. Check Out
+        //ExCheckOutParam();
+
+        //31. Reverse search
+        ExReverseSearchList();
+
       }
       catch( Exception e )
       {
@@ -120,6 +138,110 @@ namespace FirstApp
       watch.Stop();
 
       Console.WriteLine( $"\nTotal execution time: {watch.ElapsedMilliseconds}ms" );
+    }
+
+    private static void ExReverseSearchList()
+    {
+      var listTemp = new List<int>() { 1, 4, 5, 2, 5, 1, 2, 6, 1, 4 };
+      var trueIdx = listTemp.FindLastIndex( ( val ) => val == 1 );
+      var falseIdx = listTemp.FindLastIndex( ( val ) => val == 0 );
+      Console.WriteLine( $"true {trueIdx}, false {falseIdx}" );
+      var listAdvTemp = new List<List<int>>() { new List<int>() { 1, 5, 6 }, new List<int>() { 0, 5, 6 }, new List<int>() { 1, 0, 6 }, new List<int>() { 1, 2, 4 } };
+      var trueIdxAdv = listAdvTemp.FindLastIndex( ( listInt ) => listInt.Contains( 0 ) );
+      var falseIdxAdv = listAdvTemp.FindLastIndex( ( listInt ) => listInt.Contains( 8 ) );
+      Console.WriteLine( $"true {trueIdxAdv}, false {falseIdxAdv}" );
+    }
+
+    private static void ExCheckOutParam()
+    {
+      int[] data = new int[] { 1, 2, 4, 5, 6 };
+      var outTest = new OutToClass( data );
+      foreach( var val in data )
+      {
+        Console.WriteLine( val );
+      }
+
+      outTest.StartChangeData();
+
+      foreach( var val in data )
+      {
+        Console.WriteLine( val );
+      }
+
+    }
+
+    private static void ExTestEnumFunc()
+    {
+      Console.WriteLine( "If int is not in enum, It will have type as enum but without any mapping\n" );
+
+      TestEnum testSuccess = (TestEnum) 1;
+      TestEnum testFail = (TestEnum) 3;
+      int intSuccess = (int) testSuccess;
+      int intFail = (int) testFail;
+
+      Console.WriteLine( $"SUCCESS enum: {testSuccess}, int: {intSuccess}" );
+      Console.WriteLine( $"FAILED  enum: {testFail}, int: {intFail}" );
+
+      string error = "Error";
+      Enum.TryParse( error, out TestEnum result );
+      Console.WriteLine( $"SUCCESS enum: {result}, int: {(int) result}" );
+      Enum.TryParse( "sadsa", out result );
+      Console.WriteLine( $"FAILED  enum: {result}, int: {(int) result}" );
+
+    }
+
+    enum TestEnum
+    {
+      Info = 0,
+      Warning = 1,
+      Error = 2
+    };
+
+    private static void ExGetClassFromString()
+    {
+      string className = "EventClass";
+      Type type = Type.GetType( className );
+      object eventClass = Activator.CreateInstance( type );
+      //Console.WriteLine( eventClass?.GetType() ?? "null value" );
+    }
+
+    private static void ExFileDirectoryPath()
+    {
+      string[] listdata = { "lalal", "dididi", "tototo" };
+      Console.WriteLine( "test list data {0}", JsonConvert.SerializeObject( listdata ) );
+
+      var currentEnvDirectory = Environment.CurrentDirectory;
+      var currentDirDirectory = Directory.GetCurrentDirectory();
+      var currentAsmEntryDirectory = Path.GetDirectoryName( Assembly.GetEntryAssembly().Location );
+      var currentAsmExecDirectory = Path.GetDirectoryName( Assembly.GetExecutingAssembly().Location );
+
+      Console.WriteLine( currentEnvDirectory );
+      Console.WriteLine( currentDirDirectory );
+      Console.WriteLine( currentAsmEntryDirectory );
+      Console.WriteLine( currentAsmExecDirectory );
+
+      var configFolderPath = Path.Combine( Directory.GetParent( currentEnvDirectory ).Parent.Parent.ToString(), "Configs" );
+      Console.WriteLine( configFolderPath );
+      var listFiles = Directory.GetFiles( configFolderPath );
+      foreach( var file in listFiles )
+      {
+        Console.WriteLine( file );
+        using( var streamReader = new StreamReader( file ) )
+        {
+          var content = streamReader.ReadToEnd();
+          Console.WriteLine( content );
+          Dictionary<string, dynamic> contentData = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>( content );
+          foreach( var entry in contentData )
+          {
+            Console.WriteLine( entry.Key + " " + entry.Value );
+          }
+
+          streamReader.Close();
+          contentData[ "code" ] = 404;
+          string json = JsonConvert.SerializeObject( contentData );
+          File.WriteAllText( file, json );
+        }
+      }
     }
 
     private static void ExNameOf()
