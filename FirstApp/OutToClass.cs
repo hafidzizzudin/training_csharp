@@ -22,4 +22,19 @@ namespace FirstApp
         val[ ii ] = newval;
     }
   }
+
+  public class Parent
+  {
+    public Child1 ChildName { get; set; }
+    public Child2 ChildAge { get; set; }
+  }
+  public class Child1
+  {
+    public string Name { get; set; }
+  }
+
+  public class Child2
+  {
+    public double Age { get; set; }
+  }
 }

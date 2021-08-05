@@ -1,0 +1,14 @@
+{
+  "VisionConfig": {
+    "DriverConfig": {
+      "Address": 33,
+      "CanChannel": 0,
+      "ChannelType": "ctVcan"
+    },
+    "MarkerLength": 18.5,
+    "TresholdIrregulerTips": 50,
+    "IrregulerTipIndexResult": 0,
+    "ThresholdStuckTips": 50,
+    "StuckTipsIndexResult": 0
+  }
+}

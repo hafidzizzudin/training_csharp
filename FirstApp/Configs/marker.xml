@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MarkerConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<Debug level="0" path="logs/" />
+	<DebugRemark>
+		level:
+			- LOG_LEVEL_0 = 0; // don't log
+			- LOG_LEVEL_1 = 1; // dump gray images
+			- LOG_LEVEL_2 = 2; // dump debug image
+			- LOG_LEVEL_4 = 4; // print intermediary data
+			- LOG_LEVEL_8 = 8; // dump intermediary images
+			values might be added together; eg. 7 to dump everything
+	</DebugRemark>
+
+    <Detection encoding="DOT44">
+		<QuadDetect ratioEnlargement="0.15" minAngleDegree="20." maxAngleDegree="160."
+			minPerimeter="100" maxPerimeter="2000" ratioSquareness="5." >
+			<DownSample isActive="true" minSide="300" method="RESIZE" />
+		</QuadDetect>
+		<ThresholdGlobal method="ADAPTIVE" useDarkFeature="true" param1="5.0" param2="5.0" />
+		<ThresholdLocal method="OTSU" useDarkFeature="false" param1="15.0" param2="5.0" />
+		<DotDetect ratioDistance="0.2" ratioEnlargement="0.05" minSideRatio="0.25" maxSideRatio="0.8"
+			minIsoperimetric="0.6" swingAngle="8.5" minHeight4AngleCheck="3"
+			minContourRatio="0.5" maxContourRatio="1.8" />
+		<PostProcess goodFitMethod="REIDENTIFY" goodFitParam1="-0.4" goodFitParam2="0.0" />
+	</Detection>
+	<DetectionRemark>
+		Encoding:
+			- UNDEFINED (definitely not expected)
+			- DOT44
+			- DOT66
+		Threshold*.method:
+			- NONE (definitely not expected)
+			- ADAPTIVE
+			- AUTO (the pipeline tries to apply the 'best' method and parameters)
+			- BINARY (not recommended against real snaps)
+			- BARDLEY
+			- OTSU
+			- OTSU2 (apply otsu twice to handle more than 2 peaks)
+			- TRUNC (not tested)
+		Threshold*.useDarkFeature: true to find black fiducial
+		Threshold*.param1:
+			- ADAPTIVE, BRADLEY: window size
+			- BINARY: gray level (0-255)
+			- AUTO: window size ratio (relative to the corner perimeter)
+		Threshold*.param2:
+			- ADAPTIVE: c(onstant cut-off)
+			- BRADLEY: percentage
+			- AUTO: c ratio (relative to the window size)
+
+		QuadDetect.ratioEnlargement: crop area enlargement for quad detection
+		QuadDetect.minAngleDegree: minimum internal angle of a quad
+		QuadDetect.maxAngleDegree: maximum internal angle of a quad
+		QuadDetect.minPerimeter  : minimum pixels forming a quad
+		QuadDetect.maxPerimeter  : maximum pixels forming a quad
+		QuadDetect.ratioSquareness: squareness ratio (set it greater than 1 -- or 0 to skip check)
+		QuadDetect.DownSample.isActive: down sample the input to improve processing time
+		QuadDetect.DownSample.minSide: halve the input while the short side (height|width) is bigger than this value
+		QuadDetect.DownSample.method:
+			- PYRAMID_DOWN (fast, stripping even rows and cols)
+			- RESIZE (slower-with higher variance, interpolated, better detection rate)
+			         recommended for 5mp resolution (2592*1944)
+		
+		DotDetect.ratioDistance: pixel distance between blob centroid and expected centroid
+		DotDetect.ratioEnlargement: crop area enlargement for dot detection
+		                            when expecting corners detection inaccuracy
+		DotDetect.minSideRatio: min ratio between the blob and enclosing crop region
+		DotDetect.maxSideRatio: max ratio between the blob and enclosing crop region
+		DotDetect.minIsoperimetric: circle-ness (0-1) perfect circle has the value of 1
+		DotDetect.swingAngle: max difference between crop angle and the blob angle
+		DotDetect.minContourRatio: min number of points considered for detection
+		DotDetect.maxContourRatio: max number of points considered for detection
+		
+		PostProcess.goodFitMethod:
+			- DIFF_OUTSIDE (count whiteness outside the detected id)
+			- REIDENTIFY
+			- NOTHING (no post-process)
+		PostProcess,goodFitParam1: 
+			DIFF_OUTSIDE: (0.01) how much difference is allowed
+			REIDENTIFY: (-0.4) shrinkage ratio (negative value expected)
+			            behaviour is (currently) rather erratic against int data
+						8px becomes 0 and 3 with -0.6 and -0.4 respectively
+		PostProcess,goodFitParam2: 
+			DIFF_OUTSIDE, REIDENTIFY: 0 to transform to ideal, otherwise transform the ideal to the detected image
+			
+		CropArea (optional)
+			Point: (x, y) or (u, v) image coordinates
+	</DetectionRemark>
+
+</MarkerConfig>

@@ -1,0 +1,82 @@
+﻿<VisionConfig>
+
+	<Debug level="8" path="logs/" />
+	<DebugRemark>
+		level:
+			- LOG_LEVEL_0 = 0; // don't log
+			- LOG_LEVEL_2 = 2; // dump debug image
+			- LOG_LEVEL_8 = 8; // dump intermediary images
+			values might be added together; eg. 10 to dump everything
+	</DebugRemark>
+  
+  <CameraMatrix width="640" height="480">
+    <double>438.927704</double>
+    <double>0</double>
+    <double>326.435268</double>
+    <double>0</double>
+    <double>438.757134</double>
+    <double>248.533617</double>
+    <double>0</double>
+    <double>0</double>
+    <double>1</double>
+  </CameraMatrix>
+  <CameraDistortion>
+    <double>-0.154393</double>
+    <double> 0.043916</double>
+    <double>-0.000737</double>
+    <double> 0.001136</double>
+    <double> 0.0</double>
+    <double> 0.0</double>
+    <double> 0.0</double>
+    <double> 0.0</double>
+    <double> 0.0</double>
+    <double> 0.0</double>
+    <double> 0.0</double>
+    <double> 0.0</double>
+    <double> 0.0</double>
+    <double> 0.0</double>
+  </CameraDistortion>
+
+  <PointFiducial ratioMinEllipseArea="0.85" ratioMinDonut="0.0" ratioMaxDonut="0.5" angleColinear="0" >
+      <Threshold useDarkFeature="true" method="OTSU" param1="0" param2="0" />
+  </PointFiducial>
+
+  <TipRackDefinition>
+    <ID>123</ID>
+    <Mech useDarkFeature="true" cornerRadius="888.0" angle203="888.0">
+      <Rack         h="222.8" v="105.5" />
+      <DonutOffset  h=" 10.0" v=" 10.00" />
+      <BarcodeCyber h=" 5.0" v=" 20.0" width="20.0" />
+      <BarcodeAlt   h="888.0" v="888.0" width="888.0" />
+      <A1Offset     h=" 10.0" v=" 10.0" />
+    </Mech>
+    <CaddyOffset>
+      <X>888.0</X>
+      <Y>888.0</Y>
+      <Z>-52.0</Z>
+    </CaddyOffset>
+  </TipRackDefinition>
+  
+  <TipCaddyDefinition TipcaddyType="01">
+    <RowCount>8</RowCount>
+    <ColumnCount>12</ColumnCount>
+    <RowPitch>9</RowPitch>
+    <ColumnPitch>9</ColumnPitch>
+    <FirstTipOffset>
+      <X>48.75</X>
+      <Y>10.85</Y>
+      <Z>0</Z>
+    </FirstTipOffset>
+    <DetectionParameters>
+      <Width>100.0</Width>
+      <Height>64.0</Height>
+      <MinPerimeter>3.35</MinPerimeter>
+      <LowPerimeter>0.6</LowPerimeter>
+      <MaxPerimeter>4.4</MaxPerimeter>
+      <MaskShape>Ring</MaskShape>
+      <ReprojectionHeight>-58.0</ReprojectionHeight>
+      <Threshold useDarkFeature="false" method="OTSU" param1="0" param2="0" />
+    </DetectionParameters>
+  </TipCaddyDefinition>
+
+</VisionConfig>

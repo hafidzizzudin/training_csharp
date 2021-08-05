@@ -6,11 +6,113 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <None Remove="Files\Instrument_HashMismatched.xml" />
+    <None Remove="Files\Instrument_InstrumentNameMismatched.xml" />
+    <None Remove="Files\Instrument_InvalidAssemblyBuildDate.xml" />
+    <None Remove="Files\Instrument_InvalidLicenseFileFormat.xml" />
+    <None Remove="Files\Instrument_LicenseExpired.xml" />
+    <None Remove="Files\Instrument_ProductNameMismatched.xml" />
+    <None Remove="Files\Instrument_UnknownLicenseType.xml" />
+    <None Remove="Files\Instrument_Valid.xml" />
+    <None Remove="Files\product-license.xml" />
+    <None Remove="Files\Temporary_InvalidAssemblyBuildDate.xml" />
+    <None Remove="Files\Temporary_LicenseExpired.xml" />
+    <None Remove="Files\Temporary_ProductNameMismatched.xml" />
+    <None Remove="Files\Temporary_Valid.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Files\Instrument_HashMismatched.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Instrument_InstrumentNameMismatched.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Instrument_InvalidAssemblyBuildDate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Instrument_InvalidLicenseFileFormat.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Instrument_LicenseExpired.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Instrument_ProductNameMismatched.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Instrument_UnknownLicenseType.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Instrument_Valid.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\product-license.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Temporary_InvalidAssemblyBuildDate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Temporary_LicenseExpired.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Temporary_ProductNameMismatched.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\Temporary_Valid.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Remove="TestFiles\2020-07-01_07-50-30.txt" />
+    <Content Include="TestFiles\2020-07-01_07-50-30.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Remove="TestFiles\2021-07-01_07-00-02.txt" />
+    <Content Include="TestFiles\2021-07-01_07-00-02.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Remove="TestFiles\2021-07-01_07-00-05.txt" />
+    <Content Include="TestFiles\2021-07-01_07-00-05.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Remove="network-config\1-libnl-route-3-200_3.2.27-2_armhf.deb" />
+    <Content Include="network-config\1-libnl-route-3-200_3.2.27-2_armhf.deb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Remove="network-config\2-hostapd_2.6-21~bpo9~rpt1_armhf.deb" />
+    <Content Include="network-config\2-hostapd_2.6-21~bpo9~rpt1_armhf.deb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Remove="network-config\3-dnsmasq-base_2.76-5+rpt1+deb9u1_armhf.deb" />
+    <Content Include="network-config\3-dnsmasq-base_2.76-5+rpt1+deb9u1_armhf.deb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Remove="network-config\4-dns-root-data_2019031302~deb9u1_all.deb" />
+    <Content Include="network-config\4-dns-root-data_2019031302~deb9u1_all.deb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Remove="network-config\5-dnsmasq_2.76-5+rpt1+deb9u1_all.deb" />
+    <Content Include="network-config\5-dnsmasq_2.76-5+rpt1+deb9u1_all.deb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Formulatrix.License" Version="1.0.0-rc" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="SSH.NET" Version="2020.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ZipFiles\FastInstrument.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy &quot;$(ProjectDir)Configs&quot; &quot;$(TargetDir)Configs&quot; /s /e /i /y" />
+  </Target>
 
 </Project>

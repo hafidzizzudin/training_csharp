@@ -1,0 +1,20 @@
+<formulatrixLicense>
+  <license type="Instrument" modified="3/22/2021 7:33:04 PM">
+    <client id="7aa1-e9d8-8fad-2ee9" name="AbbVie Bioresearch Center # 1970" contact=""/>
+    <product name="Sample" edition="" expiry="3/30/2022 12:00:00 AM"/>
+    <details>
+      <instruments>
+        <instrument name="M-001213"/>
+      </instruments>
+    </details>
+    <features>
+      <feature name="DiaphragmAndCfChip">
+        <seats/>
+      </feature>
+      <feature name="MantisRfid">
+        <seats/>
+      </feature>
+    </features>
+  </license>
+  <hash ci="47130F3C8B86F4B014B4DE5E54DA3B29">9380F0DA6E63728C4CCF8FA2E1BB1F6B</hash>
+</formulatrixLicense>

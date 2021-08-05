@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<formulatrixLicense xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <license type="Instrument" modified="03/10/2021 10:04:11">
+    <client id="aa85-d3e5-d3d3-7539" name="SE" contact="0000121" />
+    <product name="µPulse" edition="" expiry="4/3/2025" />
+    <details startDate="4/3/2021" endDate="4/3/2025">
+      <instruments>
+        <instrument name="0001" />
+      </instruments>
+    </details>
+    <features />
+  </license>
+  <hash ci="EB31DC9929D645A22B4CA01199E5A084">B2A038DA94314BF9E58239DF88091E06</hash>
+</formulatrixLicense>

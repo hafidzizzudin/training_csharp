@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ConfigSelector xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--
+README:
+  sample images can be retrieved from 
+  - https://drive.google.com/drive/folders/1L1qmmJwpajPRTE19KR4KowL7eJiiJedF?usp=sharing
+
+parameters:
+  Control               : selected action
+				                    GET_HSV_THRESHOLD           - find the parameters for hsv based feature extraction
+				                    DETECT_PLUNGERS_HSV         - execute hsv-based detection against single image
+					                  BULK_DETECT_PLUNGERS_HSV    - execute hsv-based detection against single folder
+					                  SCORE_INTRINSIC_CALIBRATION - applicable for single image with chessboard
+  SizeDisplay           : window size for the annotated image (GET_HSV_THRESHOLD only)
+  Source                : absolute / relative path to 
+                          - the image 
+					                - or folder containing test images (BULK_DETECT_PLUNGERS_HSV only)
+  CameraConfig          : absolute / relative path to the camera instrinsic config
+  LimitHsv              : parameters to be tuned 
+                          HSV is cyclic; it is possible to set min at 240 and max at 40
+    colorspaceH         : select colorspace
+	                          HSV - https://en.wikipedia.org/wiki/HSL_and_HSV#Hue_and_chroma
+					                  LAB - https://en.wikipedia.org/wiki/CIELAB_color_space
+    H                   : valid range is 0 to 179
+    S                   : valid range is 0 to 255
+    V                   : valid range is 0 to 255
+  PlungersPosition      : "ideal" plungers position from top-left, top-right, bottom-right to bottom left
+  HackNumberOfWells     : number of wells (from image point of view)
+                          on portrait caddy, x == 16; while on landscape x == 24
+					                chessboard inner corners (for SCORE_INTRINSIC_CALIBRATION)
+  HackDetectionParameter: minimum and maximum blob perimeter to be considered as plunger
+
+  Debug                 : 0 - OFF
+                          1 - INFO
+                          2 - DEBUG (Show several info)
+                          3 - TRACE (Dump several images, necessary information)
+                          4 - DUMP (Dump all images, show all information)
+
+  LedIntensity          : 0 - 570 (Note:  Notice that if the led do not turn on during capture sequence,
+                                          there is something that makes config invalid)
+-->
+  <Debug value="4" />
+  <MaxDumpImages value="1000" />
+  <LedIntensity value="400" />
+  <LedTimeout value="6500" />
+  <ScanTipsExposure value="2" />
+  <FallenTipsExposure value="2" />
+  <StuckTipsExposure value="5" />
+  <Control action="DETECT_CADDY" />
+  <SizeDisplay width="640" height="480" />
+  <FallenTipsCrop width="123" height="133" />
+  <StuckTipsCrop x="337" y="215" width="160" height="160" />
+  <!-- <FallenTipsModel path="../../Formulatrix.Fast.Vision/models/12_23_fallen_tip_100_acc_035_224_either_crop_edgetpu.tflite" /> -->
+  <!-- <FallenTipsModel path="../../Formulatrix.Fast.Vision/models/12_23_fallen_tip_100_acc_035_224_either_crop.tflite" /> -->
+  <!-- <FallenTipsModel path="../../Formulatrix.Fast.Vision/models/01_05_fallen_tip_100_acc_100_224_v3_edgetpu.tflite" /> -->
+  <!-- <FallenTipsModel path="../../Formulatrix.Fast.Vision/models/decay_005_96_v1_lite_edgetpu.tflite" /> -->
+  <!-- <FallenTipsModel path="../../Formulatrix.Fast.Vision/models/decay_005_96_v1_lite.pb" /> -->
+  <FallenTipsModel path="../../Formulatrix.Fast.Vision/models/01_21_fallen_tip_99_7_acc_100_224_best_so_far_edgetpu.tflite" />
+  <StuckTipsModel path="../../Formulatrix.Fast.Vision/models/01_22_stuck_tip_99_7_100_160_best_edgetpu.tflite" />
+  <Source path="test/output7.jpg" />
+  <CameraConfig path="../../Formulatrix.Fast.Vision/config/config.xml" />
+  <LimitHsv colorspace="HackBIN">
+    <H min="45" max="95" />
+    <S min="5" max="100" />
+    <V min="5" max="100" />
+  </LimitHsv>
+  <PlungersPosition>
+    <Point x="206" y="159" />
+    <Point x="414" y="159" />
+    <Point x="414" y="292" />
+    <Point x="206" y="292" />
+  </PlungersPosition>
+  <HackNumberOfWells>
+    <Point x="12" y="8" />
+  </HackNumberOfWells>
+  <HackDetectionParameter min="44" max="60" />
+  <ConfidenceThreshold min="34" max="54" />
+  <!-- default: min="30" max="50"  -->
+  <SlantedTipsParam x="6" y="4" width="48" height="48" />
+  <SlantedTipsModel>
+    <Group path="../../Formulatrix.Fast.Vision/models/slanted_tip_q1_100_96_v2_edgetpu.tflite" />
+    <group path="../../Formulatrix.Fast.Vision/models/slanted_tip_q2_100_96_v2_edgetpu.tflite" />
+    <group path="../../Formulatrix.Fast.Vision/models/slanted_tip_q3_100_96_v2_edgetpu.tflite" />
+    <group path="../../Formulatrix.Fast.Vision/models/slanted_tip_q4_100_96_v2_edgetpu.tflite" />
+    <group path="../../Formulatrix.Fast.Vision/models/slanted_tip_q5_100_96_v2_edgetpu.tflite" />
+    <group path="../../Formulatrix.Fast.Vision/models/slanted_tip_q6_100_96_v2_edgetpu.tflite" />
+  </SlantedTipsModel>
+</ConfigSelector>

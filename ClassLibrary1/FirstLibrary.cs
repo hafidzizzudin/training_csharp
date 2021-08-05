@@ -18,10 +18,23 @@ namespace FirstLibrary.Testing
     public ParentClass() => Name = "";
     public ParentClass( string name ) => Name = name;
 
+    public void CheckWhichChild()
+    {
+      if( !( this is SecondChildClass ) )
+        Console.WriteLine( $"I am other child, which is {GetType().Name}" );
+      else
+        Console.WriteLine( $"I am {nameof( SecondChildClass )}" );
+    }
+
     public void DisplayInParent()
     {
       Console.WriteLine( $"Parent name: {Name}" );
     }
+  }
+
+  public class SecondChildClass : ParentClass
+  {
+
   }
 
   public class ChildClass : ParentClass

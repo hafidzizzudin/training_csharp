@@ -6,7 +6,10 @@ D:\C#\FirstApp\ClassLibrary1\obj\Debug\ClassLibrary1.dll
 D:\C#\FirstApp\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
 D:\C#\private\FirstApp\ClassLibrary1\bin\Debug\ClassLibrary1.dll
 D:\C#\private\FirstApp\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+D:\C#\private\FirstApp\ClassLibrary1\bin\Debug\Renci.SshNet.dll
+D:\C#\private\FirstApp\ClassLibrary1\bin\Debug\Renci.SshNet.xml
 D:\C#\private\FirstApp\ClassLibrary1\obj\Debug\ClassLibrary1.csprojAssemblyReference.cache
 D:\C#\private\FirstApp\ClassLibrary1\obj\Debug\ClassLibrary1.csproj.CoreCompileInputs.cache
+D:\C#\private\FirstApp\ClassLibrary1\obj\Debug\ClassLibrary1.csproj.CopyComplete
 D:\C#\private\FirstApp\ClassLibrary1\obj\Debug\ClassLibrary1.dll
 D:\C#\private\FirstApp\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
